@@ -1,0 +1,204 @@
+/* 善果佛化禮儀．拼貼畫布自訂樣式 */
+
+:root{
+  --gold:#D4AF37; --gold-dark:#A8842A; --teal:#2E5A56; --peach:#F2997B;
+  --cream:#FDFBF7; --ink:#33312C; --serif:"Noto Serif TC",serif;
+}
+
+html{scroll-behavior:smooth;}
+body{
+  background-color:#FDFBF7;
+  color:#33312C;
+  font-family:"Noto Sans TC",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* 宣紙纖維紋理 */
+.paper-texture{
+  background-image:url("https://www.transparenttextures.com/patterns/natural-paper.png");
+}
+.paper-grain::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:url("https://www.transparenttextures.com/patterns/rice-paper-2.png");
+  opacity:.5;mix-blend-mode:multiply;
+}
+
+/* 拼貼遮罩：柔邊圓形、花瓣、毛筆 */
+.mask-soft{
+  -webkit-mask-image:radial-gradient(circle at center,#000 58%,transparent 82%);
+  mask-image:radial-gradient(circle at center,#000 58%,transparent 82%);
+}
+.mask-petal{
+  border-radius:42% 58% 60% 40% / 45% 45% 55% 55%;
+}
+.mask-leaf{
+  border-radius:0 70% 0 70%;
+}
+
+/* 標題襯線 */
+.font-display{font-family:var(--serif);}
+
+/* 金線分隔的書籤標籤 */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:14px;letter-spacing:.18em;font-weight:500;
+  color:var(--gold-dark);
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--gold);}
+
+/* 連結箭頭 */
+.link-arrow{
+  display:inline-flex;align-items:center;gap:.4rem;color:var(--teal);font-weight:500;
+  transition:gap .25s ease,color .25s ease;
+}
+.link-arrow:hover{gap:.85rem;color:var(--gold-dark);}
+
+/* 按鈕基底 */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  padding:.78rem 1.9rem;border-radius:9999px;font-weight:700;font-size:15px;
+  transition:transform .18s ease,opacity .2s ease,background-color .2s ease,box-shadow .2s ease;
+  cursor:pointer;text-align:center;line-height:1.2;
+}
+.btn:active{transform:scale(.96);}
+.btn-primary{background:var(--gold);color:#3a2f00;box-shadow:0 10px 24px -12px rgba(168,132,42,.7);}
+.btn-primary:hover{background:#e3bf45;transform:translateY(-2px);}
+.btn-teal{background:var(--teal);color:#fff;}
+.btn-teal:hover{background:#356f6a;transform:translateY(-2px);}
+.btn-line{background:#06C755;color:#fff;}
+.btn-line:hover{opacity:.9;transform:translateY(-2px);}
+.btn-ghost{background:transparent;border:2px solid var(--teal);color:var(--teal);}
+.btn-ghost:hover{background:rgba(46,90,86,.08);}
+.btn-ghost-light{background:transparent;border:2px solid rgba(255,255,255,.65);color:#fff;}
+.btn-ghost-light:hover{background:rgba(255,255,255,.12);}
+.btn-lg{padding:1rem 2.4rem;font-size:16px;}
+
+/* 卡片：無邊框，米白疊色 */
+.collage-card{
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(212,175,55,.16);
+  border-radius:1.4rem;
+  backdrop-filter:blur(4px);
+  transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+}
+.collage-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 26px 50px -28px rgba(58,47,0,.4);
+  border-color:rgba(212,175,55,.5);
+}
+
+/* 滾動進場 */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+.reveal.d1{transition-delay:.12s;}
+.reveal.d2{transition-delay:.24s;}
+.reveal.d3{transition-delay:.36s;}
+
+/* 導覽列 */
+.nav-link{position:relative;color:#5C564B;font-size:15px;font-weight:500;transition:color .2s ease;}
+.nav-link::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--gold);transition:width .25s ease;}
+.nav-link:hover{color:var(--gold-dark);}
+.nav-link:hover::after,.nav-link.active::after{width:100%;}
+.nav-link.active{color:var(--gold-dark);}
+
+/* 行動選單 */
+.mobile-menu{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+.mobile-menu.open{max-height:520px;}
+
+/* FAQ 手風琴 */
+.qa{border-radius:1.2rem;background:rgba(255,255,255,.66);border:1px solid transparent;transition:border-color .3s,box-shadow .3s;overflow:hidden;}
+.qa[open]{border-color:rgba(212,175,55,.32);box-shadow:0 18px 40px -26px rgba(58,47,0,.35);}
+.qa summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;padding:1.5rem 1.7rem;}
+.qa summary::-webkit-details-marker{display:none;}
+.qa .pl{flex:none;width:30px;height:30px;border-radius:9999px;background:rgba(212,175,55,.16);color:var(--gold-dark);display:flex;align-items:center;justify-content:center;font-weight:700;transition:transform .3s ease,background .3s;}
+.qa[open] .pl{transform:rotate(45deg);background:var(--gold);color:#fff;}
+.qa .ans{padding:0 1.7rem 1.6rem;color:#5C564B;line-height:1.85;}
+.qa .ans-inner{border-top:1px solid rgba(201,190,158,.5);padding-top:1.1rem;}
+
+/* 時間軸 */
+.timeline{position:relative;}
+.timeline::before{content:"";position:absolute;left:27px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--gold),rgba(212,175,55,.15));}
+@media(min-width:768px){.timeline::before{left:50%;transform:translateX(-1px);}}
+.tl-item{position:relative;padding-left:72px;margin-bottom:2.2rem;}
+@media(min-width:768px){
+  .tl-item{padding-left:0;width:50%;}
+  .tl-item.r{margin-left:50%;padding-left:56px;}
+  .tl-item.l{padding-right:56px;text-align:right;}
+}
+.tl-dot{position:absolute;left:14px;top:0;width:30px;height:30px;border-radius:9999px;background:var(--gold);color:#fff;font-family:var(--serif);font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px rgba(212,175,55,.16);}
+@media(min-width:768px){
+  .tl-item.l .tl-dot{left:auto;right:-15px;}
+  .tl-item.r .tl-dot{left:-15px;}
+}
+
+/* 報價卡 */
+.plan{position:relative;border-radius:1.4rem;padding:2rem 1.6rem;background:rgba(255,255,255,.7);border:1px solid rgba(201,190,158,.4);transition:transform .3s,box-shadow .3s;}
+.plan:hover{transform:translateY(-6px);box-shadow:0 24px 46px -26px rgba(58,47,0,.4);}
+.plan.feature{background:linear-gradient(180deg,#fffdf5,#fff);border:2px solid var(--gold);box-shadow:0 24px 50px -24px rgba(168,132,42,.5);}
+.plan .tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--peach);color:#5a2414;font-size:13px;font-weight:700;padding:.3rem 1rem;border-radius:9999px;white-space:nowrap;}
+.plan .price{font-family:var(--serif);font-size:30px;font-weight:700;color:var(--teal);}
+.plan .price small{font-size:14px;color:#8a8273;font-weight:400;}
+
+/* chip 標籤 */
+.chip{display:inline-block;padding:.32rem .9rem;border-radius:9999px;background:rgba(242,153,123,.18);color:#9c4a30;font-size:13px;font-weight:500;}
+
+/* 浮動光暈 */
+.halo{position:absolute;border-radius:9999px;filter:blur(60px);pointer-events:none;z-index:0;}
+
+/* 區塊標題 */
+.section-title{font-family:var(--serif);font-weight:700;color:var(--ink);line-height:1.32;}
+
+/* 手機固定底部雙鍵 */
+.mobilebar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:1px;background:rgba(201,190,158,.4);box-shadow:0 -6px 24px -10px rgba(0,0,0,.18);}
+.mobilebar a{flex:1;text-align:center;padding:.95rem 0;font-weight:700;font-size:15px;}
+.mobilebar .mb-tel{background:var(--gold);color:#3a2f00;}
+.mobilebar .mb-line{background:#06C755;color:#fff;}
+@media(min-width:768px){.mobilebar{display:none;}}
+
+/* 桌機浮動 LINE */
+.float-line{position:fixed;right:22px;bottom:26px;z-index:55;width:62px;height:62px;border-radius:9999px;background:#06C755;color:#fff;display:none;align-items:center;justify-content:center;text-align:center;font-size:12px;font-weight:700;line-height:1.2;box-shadow:0 12px 28px -10px rgba(6,199,85,.7);transition:transform .2s;}
+.float-line:hover{transform:scale(1.06);}
+@media(min-width:768px){.float-line{display:flex;}}
+
+/* 引文 */
+.blockquote{font-family:var(--serif);font-size:clamp(20px,3vw,30px);line-height:1.7;color:#fff;}
+
+/* 表單 */
+.field{width:100%;background:rgba(255,255,255,.7);border:none;border-bottom:2px solid rgba(201,190,158,.7);border-radius:.5rem .5rem 0 0;padding:.85rem 1rem;font-size:16px;color:#33312C;transition:border-color .2s,background .2s;}
+.field:focus{outline:none;border-bottom-color:var(--gold);background:#fff;}
+.field::placeholder{color:#a39c8c;}
+
+/* 圖片柔化處理 */
+.img-warm{filter:saturate(1.02);}
+
+/* 導覽列玻璃感 */
+#siteHeader{transition:background-color .3s ease,box-shadow .3s ease,backdrop-filter .3s ease;}
+#siteHeader.scrolled{background:rgba(253,251,247,.86);backdrop-filter:blur(14px);box-shadow:0 6px 24px -18px rgba(58,47,0,.5);}
+
+/* 西方三聖：佛像常駐，願文從下方滑出 */
+.sage-card{position:relative;overflow:hidden;cursor:pointer;}
+.sage-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+/* 底部常駐名牌 */
+.sage-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;
+  display:flex;align-items:flex-end;justify-content:space-between;gap:.8rem;
+  padding:2.2rem 1.2rem 1.1rem;color:#fff;
+  background:linear-gradient(to top,rgba(31,63,60,.92),rgba(31,63,60,.55) 55%,rgba(31,63,60,0));
+  transition:opacity .35s ease;}
+.sage-toggle{flex:none;width:40px;height:40px;border-radius:9999px;
+  background:rgba(212,175,55,.96);color:#3a2f00;font-family:var(--serif);font-weight:700;font-size:17px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 14px rgba(0,0,0,.28);transition:transform .3s ease;}
+.sage-card:hover .sage-toggle{transform:scale(1.1) rotate(6deg);}
+/* 滑出的願文覆蓋層（只蓋下半部，佛像上半仍可見） */
+.sage-veil{position:absolute;left:0;right:0;bottom:0;z-index:3;
+  padding:1.6rem 1.5rem 1.5rem;color:#fff;
+  background:linear-gradient(to top,rgba(31,63,60,.97) 78%,rgba(31,63,60,.62));
+  backdrop-filter:blur(1px);
+  transform:translateY(100%);transition:transform .55s cubic-bezier(.4,.2,.2,1);}
+.sage-card.open .sage-veil{transform:translateY(0);}
+.sage-card.open .sage-cap{opacity:0;}
+.sage-close{display:inline-flex;align-items:center;gap:.35rem;margin-top:1rem;font-size:13px;color:rgba(255,255,255,.72);}
+
+/* FAQ 分類按鈕 */
+[data-faq-tab]{transition:background .25s,color .25s;}
+[data-faq-tab].active{background:var(--gold);color:#fff;}
