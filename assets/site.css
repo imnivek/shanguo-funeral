@@ -11,7 +11,13 @@ body{
   color:#33312C;
   font-family:"Noto Sans TC",sans-serif;
   -webkit-font-smoothing:antialiased;
+  /* 繁中斷句：短詞（林師兄、善果等）不被逐字拆斷，僅在標點與空白處換行 */
+  word-break:keep-all;
+  overflow-wrap:break-word;
+  line-break:strict;
 }
+/* 電話、按鈕文字、名牌等不換行 */
+.nb,.btn,.mobilebar a,.sage-toggle{white-space:nowrap;}
 
 /* 宣紙纖維紋理 */
 .paper-texture{
