@@ -5,7 +5,8 @@
   --cream:#FDFBF7; --ink:#33312C; --serif:"Noto Serif TC",serif;
 }
 
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
+*{min-width:0;}
 body{
   background-color:#FDFBF7;
   color:#33312C;
@@ -15,9 +16,14 @@ body{
   word-break:keep-all;
   overflow-wrap:break-word;
   line-break:strict;
+  overflow-x:hidden;
+  max-width:100%;
 }
-/* 電話、按鈕文字、名牌等不換行 */
-.nb,.btn,.mobilebar a,.sage-toggle{white-space:nowrap;}
+/* 只讓電話、底部固定鍵、名牌鈕不換行；一般按鈕可換行避免撐破窄螢幕 */
+.nb,.mobilebar a,.sage-toggle{white-space:nowrap;}
+/* 裝飾光暈不影響排版、不擴張版面 */
+.halo{max-width:100%;}
+img{max-width:100%;height:auto;}
 
 /* 宣紙纖維紋理 */
 .paper-texture{
