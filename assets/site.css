@@ -22,6 +22,10 @@ body{
 }
 /* 電話號碼、底部固定鍵、名牌鈕、特定短詞不斷行 */
 .nb,.mobilebar a,.sage-toggle{white-space:nowrap;}
+/* 避免長段落結尾只剩一兩個孤字（pretty）、標題各行長度更勻稱（balance）。
+   依各裝置實際寬度即時計算斷點，舊瀏覽器自動退回正常換行。 */
+p,li,blockquote,figcaption,.ans-inner,.chip,cite{text-wrap:pretty;}
+h1,h2,h3,h4,.section-title,.blockquote{text-wrap:balance;}
 /* 裝飾光暈不影響排版、不擴張版面 */
 .halo{max-width:100%;}
 img{max-width:100%;height:auto;}
