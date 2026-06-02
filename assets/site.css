@@ -12,14 +12,15 @@ body{
   color:#33312C;
   font-family:"Noto Sans TC",sans-serif;
   -webkit-font-smoothing:antialiased;
-  /* 繁中斷句：短詞（林師兄、善果等）不被逐字拆斷，僅在標點與空白處換行 */
-  word-break:keep-all;
+  /* 繁中斷句：採中文預設逐字換行，行尾自然填滿、不會整句溢出被裁切。
+     需要整體不斷行的（電話、人名等）才用 .nb 包覆。 */
+  word-break:normal;
   overflow-wrap:break-word;
-  line-break:strict;
+  line-break:auto;
   overflow-x:hidden;
   max-width:100%;
 }
-/* 只讓電話、底部固定鍵、名牌鈕不換行；一般按鈕可換行避免撐破窄螢幕 */
+/* 電話號碼、底部固定鍵、名牌鈕、特定短詞不斷行 */
 .nb,.mobilebar a,.sage-toggle{white-space:nowrap;}
 /* 裝飾光暈不影響排版、不擴張版面 */
 .halo{max-width:100%;}
@@ -203,6 +204,7 @@ img{max-width:100%;height:auto;}
 .sage-card:hover .sage-toggle{transform:scale(1.1) rotate(6deg);}
 /* 滑出的願文覆蓋層（只蓋下半部，佛像上半仍可見） */
 .sage-veil{position:absolute;left:0;right:0;bottom:0;z-index:3;
+  max-height:100%;overflow-y:auto;
   padding:1.6rem 1.5rem 1.5rem;color:#fff;
   background:linear-gradient(to top,rgba(31,63,60,.97) 78%,rgba(31,63,60,.62));
   backdrop-filter:blur(1px);
